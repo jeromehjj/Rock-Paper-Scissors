@@ -29,7 +29,32 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = "Rock";
-const computerSelection = getComputerChoice();
-console.log(computerSelection)
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        const prompt=require("prompt-sync")({sigint:true});
+        let playerSelection = prompt("Choose between Rock, Paper or Scissors: ");
+        computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection);
+        console.log(result);
+        if (result.includes("won")) {
+            playerScore++;
+        } else if (result.includes("lost")) {
+            computerScore++;
+        } else {
+            continue;
+        }
+    }
+
+    if (playerScore > computerScore) {
+        console.log("Congrats you won! Player " + playerScore + " : Computer " + computerScore);
+    } else if (playerScore < computerScore) {
+        console.log("You lost! Try again. Player " + playerScore + " : Computer " + computerScore);
+    } else {
+        console.log("You somehow drew! Try again. Player " + playerScore + " : Computer " + computerScore);
+    }
+}
+
+game();
