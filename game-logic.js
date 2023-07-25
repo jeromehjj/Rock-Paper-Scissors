@@ -34,11 +34,14 @@ function game() {
     let computerScore = 0;
 
     for (let i = 0; i < 5; i++) {
+        
         const prompt=require("prompt-sync")({sigint:true});
         let playerSelection = prompt("Choose between Rock, Paper or Scissors: ");
         computerSelection = getComputerChoice();
+
         let result = playRound(playerSelection, computerSelection);
         console.log(result);
+
         if (result.includes("won")) {
             playerScore++;
         } else if (result.includes("lost")) {
