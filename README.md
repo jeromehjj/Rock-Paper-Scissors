@@ -1,2 +1,2 @@
 # Rock-Paper-Scissors
-Personal Project
+Personal Project about the infamous childhood game, Rock Paper Scissors!
