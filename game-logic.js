@@ -1,3 +1,26 @@
+let playerSelection;
+let computerSelection;
+let playerScore = 0;
+let computerScore = 0;
+const playerText = document.querySelector('#playerText');
+const computerText = document.querySelector('#computerText');
+const resultText = document.querySelector('#resultText');
+const buttons = document.querySelectorAll('.button')
+
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        playerSelection = button.textContent;
+        playerText.textContent = `Player: ${playerSelection}`;
+        computerSelection = getComputerChoice();
+        computerText.textContent = `Computer: ${computerSelection}`;
+        let result = playRound(playerSelection, computerSelection);
+        resultText.textContent = `Result: ${result}`;
+    })
+});
+
+
+
 function getComputerChoice() {
     const choices = ["Rock", "Paper", "Scissors"];
     return choices[Math.floor(Math.random() * 3)];
@@ -29,35 +52,37 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
 
-    for (let i = 0; i < 5; i++) {
-        
-        const prompt=require("prompt-sync")({sigint:true});
-        let playerSelection = prompt("Choose between Rock, Paper or Scissors: ");
-        computerSelection = getComputerChoice();
 
-        let result = playRound(playerSelection, computerSelection);
-        console.log(result);
+// function game() {
+//     let playerScore = 0;
+//     let computerScore = 0;
 
-        if (result.includes("won")) {
-            playerScore++;
-        } else if (result.includes("lost")) {
-            computerScore++;
-        } else {
-            continue;
-        }
-    }
+//     for (let i = 0; i < 5; i++) {
 
-    if (playerScore > computerScore) {
-        console.log("Congrats you won! Player " + playerScore + " : Computer " + computerScore);
-    } else if (playerScore < computerScore) {
-        console.log("You lost! Try again. Player " + playerScore + " : Computer " + computerScore);
-    } else {
-        console.log("You somehow drew! Try again. Player " + playerScore + " : Computer " + computerScore);
-    }
-}
+//         const prompt=require("prompt-sync")({sigint:true});
+//         let playerSelection = prompt("Choose between Rock, Paper or Scissors: ");
+//         computerSelection = getComputerChoice();
 
-game();
+//         let result = playRound(playerSelection, computerSelection);
+//         console.log(result);
+
+//         if (result.includes("won")) {
+//             playerScore++;
+//         } else if (result.includes("lost")) {
+//             computerScore++;
+//         } else {
+//             continue;
+//         }
+//     }
+
+//     if (playerScore > computerScore) {
+//         console.log("Congrats you won! Player " + playerScore + " : Computer " + computerScore);
+//     } else if (playerScore < computerScore) {
+//         console.log("You lost! Try again. Player " + playerScore + " : Computer " + computerScore);
+//     } else {
+//         console.log("You somehow drew! Try again. Player " + playerScore + " : Computer " + computerScore);
+//     }
+// }
+
+// game();
