@@ -2,23 +2,19 @@ let playerSelection;
 let computerSelection;
 let playerScore = 0;
 let computerScore = 0;
+let result;
 const playerText = document.querySelector('#playerText');
 const computerText = document.querySelector('#computerText');
 const resultText = document.querySelector('#resultText');
 const buttons = document.querySelectorAll('.button')
 
-
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        playerSelection = button.textContent;
-        playerText.textContent = `Player: ${playerSelection}`;
-        computerSelection = getComputerChoice();
-        computerText.textContent = `Computer: ${computerSelection}`;
-        let result = playRound(playerSelection, computerSelection);
-        resultText.textContent = `Result: ${result}`;
-    })
-});
-
+buttons.forEach(button => button.addEventListener("click", () => {
+    playerSelection = button.textContent;
+    computerSelection = getComputerChoice();
+    playerText.textContent = `Player: ${playerSelection}`;
+    computerText.textContent = `Computer: ${computerSelection}`;
+    resultText.textContent = playRound(playerSelection, computerSelection);
+}));
 
 
 function getComputerChoice() {
@@ -27,24 +23,30 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection.toUpperCase() === computerSelection.toUpperCase()) {
+    if (playerSelection.toUpperCase() == computerSelection.toUpperCase()) {
         return "It was a draw! " + playerSelection + " is the same as " + computerSelection;
-    } else if (playerSelection.toUpperCase() === "ROCK") {
-        if (computerSelection.toUpperCase() === "SCISSORS") {
+    } else if (playerSelection.toUpperCase() == "ROCK") {
+        if (computerSelection.toUpperCase() == "SCISSORS") {
+            playerScore++;
             return "You won! " + playerSelection + " beats " + computerSelection;
         } else {
+            computerScore++;
             return "You lost! " + computerSelection + " beats " + playerSelection;
         }
-    } else if (playerSelection.toUpperCase() === "PAPER") {
-        if (computerSelection.toUpperCase() === "ROCK") {
+    } else if (playerSelection.toUpperCase() == "PAPER") {
+        if (computerSelection.toUpperCase() == "ROCK") {
+            playerScore++;
             return "You won! " + playerSelection + " beats " + computerSelection;
         } else {
+            computerScore++;
             return "You lost! " + computerSelection + " beats " + playerSelection;
         }
-    } else if (playerSelection.toUpperCase() === "SCISSORS") {
-        if (computerSelection.toUpperCase() === "PAPER") {
+    } else if (playerSelection.toUpperCase() == "SCISSORS") {
+        if (computerSelection.toUpperCase() == "PAPER") {
+            playerScore++;
             return "You won! " + playerSelection + " beats " + computerSelection;
         } else {
+            computerScore++;
             return "You lost! " + computerSelection + " beats " + playerSelection;
         }
     } else {
